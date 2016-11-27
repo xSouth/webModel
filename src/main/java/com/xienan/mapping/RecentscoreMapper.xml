@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xienan.dao.RecentscoreMapper" >
+  <resultMap id="BaseResultMap" type="com.xienan.model.Recentscore" >
+    <id column="match_id" property="matchId" jdbcType="INTEGER" />
+    <result column="match_name" property="matchName" jdbcType="VARCHAR" />
+    <result column="contestant_title" property="contestantTitle" jdbcType="VARCHAR" />
+    <result column="match_year" property="matchYear" jdbcType="INTEGER" />
+    <result column="practice_name" property="practiceName" jdbcType="VARCHAR" />
+    <result column="match_weight" property="matchWeight" jdbcType="INTEGER" />
+    <result column="match_date" property="matchDate" jdbcType="DATE" />
+    <result column="match_player" property="matchPlayer" jdbcType="VARCHAR" />
+    <result column="match_result" property="matchResult" jdbcType="INTEGER" />
+    <result column="contestant_id" property="contestantId" jdbcType="BIGINT" />
+    <result column="training_video" property="trainingVideo" jdbcType="VARCHAR" />
+    <result column="match_title" property="matchTitle" jdbcType="INTEGER" />
+    <result column="deuce" property="deuce" jdbcType="INTEGER" />
+    <result column="victory" property="victory" jdbcType="INTEGER" />
+    <result column="loss" property="loss" jdbcType="INTEGER" />
+    <result column="ko" property="ko" jdbcType="INTEGER" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    match_id, match_name, contestant_title, match_year, practice_name, match_weight, 
+    match_date, match_player, match_result, contestant_id, training_video, match_title, 
+    deuce, victory, loss, ko, insert_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bj_recentscore
+    where match_id = #{matchId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bj_recentscore
+    where match_id = #{matchId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xienan.model.Recentscore" >
+    insert into bj_recentscore (match_id, match_name, contestant_title, 
+      match_year, practice_name, match_weight, 
+      match_date, match_player, match_result, 
+      contestant_id, training_video, match_title, 
+      deuce, victory, loss, 
+      ko, insert_time)
+    values (#{matchId,jdbcType=INTEGER}, #{matchName,jdbcType=VARCHAR}, #{contestantTitle,jdbcType=VARCHAR}, 
+      #{matchYear,jdbcType=INTEGER}, #{practiceName,jdbcType=VARCHAR}, #{matchWeight,jdbcType=INTEGER}, 
+      #{matchDate,jdbcType=DATE}, #{matchPlayer,jdbcType=VARCHAR}, #{matchResult,jdbcType=INTEGER}, 
+      #{contestantId,jdbcType=BIGINT}, #{trainingVideo,jdbcType=VARCHAR}, #{matchTitle,jdbcType=INTEGER}, 
+      #{deuce,jdbcType=INTEGER}, #{victory,jdbcType=INTEGER}, #{loss,jdbcType=INTEGER}, 
+      #{ko,jdbcType=INTEGER}, #{insertTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xienan.model.Recentscore" >
+    insert into bj_recentscore
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="matchId != null" >
+        match_id,
+      </if>
+      <if test="matchName != null" >
+        match_name,
+      </if>
+      <if test="contestantTitle != null" >
+        contestant_title,
+      </if>
+      <if test="matchYear != null" >
+        match_year,
+      </if>
+      <if test="practiceName != null" >
+        practice_name,
+      </if>
+      <if test="matchWeight != null" >
+        match_weight,
+      </if>
+      <if test="matchDate != null" >
+        match_date,
+      </if>
+      <if test="matchPlayer != null" >
+        match_player,
+      </if>
+      <if test="matchResult != null" >
+        match_result,
+      </if>
+      <if test="contestantId != null" >
+        contestant_id,
+      </if>
+      <if test="trainingVideo != null" >
+        training_video,
+      </if>
+      <if test="matchTitle != null" >
+        match_title,
+      </if>
+      <if test="deuce != null" >
+        deuce,
+      </if>
+      <if test="victory != null" >
+        victory,
+      </if>
+      <if test="loss != null" >
+        loss,
+      </if>
+      <if test="ko != null" >
+        ko,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="matchId != null" >
+        #{matchId,jdbcType=INTEGER},
+      </if>
+      <if test="matchName != null" >
+        #{matchName,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantTitle != null" >
+        #{contestantTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="matchYear != null" >
+        #{matchYear,jdbcType=INTEGER},
+      </if>
+      <if test="practiceName != null" >
+        #{practiceName,jdbcType=VARCHAR},
+      </if>
+      <if test="matchWeight != null" >
+        #{matchWeight,jdbcType=INTEGER},
+      </if>
+      <if test="matchDate != null" >
+        #{matchDate,jdbcType=DATE},
+      </if>
+      <if test="matchPlayer != null" >
+        #{matchPlayer,jdbcType=VARCHAR},
+      </if>
+      <if test="matchResult != null" >
+        #{matchResult,jdbcType=INTEGER},
+      </if>
+      <if test="contestantId != null" >
+        #{contestantId,jdbcType=BIGINT},
+      </if>
+      <if test="trainingVideo != null" >
+        #{trainingVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="matchTitle != null" >
+        #{matchTitle,jdbcType=INTEGER},
+      </if>
+      <if test="deuce != null" >
+        #{deuce,jdbcType=INTEGER},
+      </if>
+      <if test="victory != null" >
+        #{victory,jdbcType=INTEGER},
+      </if>
+      <if test="loss != null" >
+        #{loss,jdbcType=INTEGER},
+      </if>
+      <if test="ko != null" >
+        #{ko,jdbcType=INTEGER},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xienan.model.Recentscore" >
+    update bj_recentscore
+    <set >
+      <if test="matchName != null" >
+        match_name = #{matchName,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantTitle != null" >
+        contestant_title = #{contestantTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="matchYear != null" >
+        match_year = #{matchYear,jdbcType=INTEGER},
+      </if>
+      <if test="practiceName != null" >
+        practice_name = #{practiceName,jdbcType=VARCHAR},
+      </if>
+      <if test="matchWeight != null" >
+        match_weight = #{matchWeight,jdbcType=INTEGER},
+      </if>
+      <if test="matchDate != null" >
+        match_date = #{matchDate,jdbcType=DATE},
+      </if>
+      <if test="matchPlayer != null" >
+        match_player = #{matchPlayer,jdbcType=VARCHAR},
+      </if>
+      <if test="matchResult != null" >
+        match_result = #{matchResult,jdbcType=INTEGER},
+      </if>
+      <if test="contestantId != null" >
+        contestant_id = #{contestantId,jdbcType=BIGINT},
+      </if>
+      <if test="trainingVideo != null" >
+        training_video = #{trainingVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="matchTitle != null" >
+        match_title = #{matchTitle,jdbcType=INTEGER},
+      </if>
+      <if test="deuce != null" >
+        deuce = #{deuce,jdbcType=INTEGER},
+      </if>
+      <if test="victory != null" >
+        victory = #{victory,jdbcType=INTEGER},
+      </if>
+      <if test="loss != null" >
+        loss = #{loss,jdbcType=INTEGER},
+      </if>
+      <if test="ko != null" >
+        ko = #{ko,jdbcType=INTEGER},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where match_id = #{matchId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xienan.model.Recentscore" >
+    update bj_recentscore
+    set match_name = #{matchName,jdbcType=VARCHAR},
+      contestant_title = #{contestantTitle,jdbcType=VARCHAR},
+      match_year = #{matchYear,jdbcType=INTEGER},
+      practice_name = #{practiceName,jdbcType=VARCHAR},
+      match_weight = #{matchWeight,jdbcType=INTEGER},
+      match_date = #{matchDate,jdbcType=DATE},
+      match_player = #{matchPlayer,jdbcType=VARCHAR},
+      match_result = #{matchResult,jdbcType=INTEGER},
+      contestant_id = #{contestantId,jdbcType=BIGINT},
+      training_video = #{trainingVideo,jdbcType=VARCHAR},
+      match_title = #{matchTitle,jdbcType=INTEGER},
+      deuce = #{deuce,jdbcType=INTEGER},
+      victory = #{victory,jdbcType=INTEGER},
+      loss = #{loss,jdbcType=INTEGER},
+      ko = #{ko,jdbcType=INTEGER},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP}
+    where match_id = #{matchId,jdbcType=INTEGER}
+  </update>
+</mapper>

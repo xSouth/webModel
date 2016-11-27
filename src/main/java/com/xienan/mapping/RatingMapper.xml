@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xienan.dao.RatingMapper" >
+  <resultMap id="BaseResultMap" type="com.xienan.model.Rating" >
+    <result column="athletes_id" property="athletesId" jdbcType="BIGINT" />
+    <result column="boxing" property="boxing" jdbcType="INTEGER" />
+    <result column="kick_leg" property="kickLeg" jdbcType="INTEGER" />
+    <result column="speed" property="speed" jdbcType="INTEGER" />
+    <result column="defense" property="defense" jdbcType="INTEGER" />
+    <result column="power" property="power" jdbcType="INTEGER" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.xienan.model.Rating" >
+    insert into bj_rating (athletes_id, boxing, kick_leg, 
+      speed, defense, power, 
+      insert_time)
+    values (#{athletesId,jdbcType=BIGINT}, #{boxing,jdbcType=INTEGER}, #{kickLeg,jdbcType=INTEGER}, 
+      #{speed,jdbcType=INTEGER}, #{defense,jdbcType=INTEGER}, #{power,jdbcType=INTEGER}, 
+      #{insertTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xienan.model.Rating" >
+    insert into bj_rating
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="athletesId != null" >
+        athletes_id,
+      </if>
+      <if test="boxing != null" >
+        boxing,
+      </if>
+      <if test="kickLeg != null" >
+        kick_leg,
+      </if>
+      <if test="speed != null" >
+        speed,
+      </if>
+      <if test="defense != null" >
+        defense,
+      </if>
+      <if test="power != null" >
+        power,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="athletesId != null" >
+        #{athletesId,jdbcType=BIGINT},
+      </if>
+      <if test="boxing != null" >
+        #{boxing,jdbcType=INTEGER},
+      </if>
+      <if test="kickLeg != null" >
+        #{kickLeg,jdbcType=INTEGER},
+      </if>
+      <if test="speed != null" >
+        #{speed,jdbcType=INTEGER},
+      </if>
+      <if test="defense != null" >
+        #{defense,jdbcType=INTEGER},
+      </if>
+      <if test="power != null" >
+        #{power,jdbcType=INTEGER},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

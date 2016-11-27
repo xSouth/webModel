@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xienan.dao.Voidoreview_commentMapper" >
+  <resultMap id="BaseResultMap" type="com.xienan.model.Voidoreview_comment" >
+    <id column="comment_id" property="commentId" jdbcType="BIGINT" />
+    <result column="topic_id" property="topicId" jdbcType="BIGINT" />
+    <result column="topic_type" property="topicType" jdbcType="VARCHAR" />
+    <result column="comment_content" property="commentContent" jdbcType="VARCHAR" />
+    <result column="from_uid" property="fromUid" jdbcType="BIGINT" />
+    <result column="to_uid" property="toUid" jdbcType="BIGINT" />
+    <result column="comment_likes" property="commentLikes" jdbcType="INTEGER" />
+    <result column="comment_time" property="commentTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    comment_id, topic_id, topic_type, comment_content, from_uid, to_uid, comment_likes, 
+    comment_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bj_voidoreview_comment
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bj_voidoreview_comment
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xienan.model.Voidoreview_comment" >
+    insert into bj_voidoreview_comment (comment_id, topic_id, topic_type, 
+      comment_content, from_uid, to_uid, 
+      comment_likes, comment_time)
+    values (#{commentId,jdbcType=BIGINT}, #{topicId,jdbcType=BIGINT}, #{topicType,jdbcType=VARCHAR}, 
+      #{commentContent,jdbcType=VARCHAR}, #{fromUid,jdbcType=BIGINT}, #{toUid,jdbcType=BIGINT}, 
+      #{commentLikes,jdbcType=INTEGER}, #{commentTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xienan.model.Voidoreview_comment" >
+    insert into bj_voidoreview_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="topicId != null" >
+        topic_id,
+      </if>
+      <if test="topicType != null" >
+        topic_type,
+      </if>
+      <if test="commentContent != null" >
+        comment_content,
+      </if>
+      <if test="fromUid != null" >
+        from_uid,
+      </if>
+      <if test="toUid != null" >
+        to_uid,
+      </if>
+      <if test="commentLikes != null" >
+        comment_likes,
+      </if>
+      <if test="commentTime != null" >
+        comment_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        #{commentId,jdbcType=BIGINT},
+      </if>
+      <if test="topicId != null" >
+        #{topicId,jdbcType=BIGINT},
+      </if>
+      <if test="topicType != null" >
+        #{topicType,jdbcType=VARCHAR},
+      </if>
+      <if test="commentContent != null" >
+        #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="fromUid != null" >
+        #{fromUid,jdbcType=BIGINT},
+      </if>
+      <if test="toUid != null" >
+        #{toUid,jdbcType=BIGINT},
+      </if>
+      <if test="commentLikes != null" >
+        #{commentLikes,jdbcType=INTEGER},
+      </if>
+      <if test="commentTime != null" >
+        #{commentTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xienan.model.Voidoreview_comment" >
+    update bj_voidoreview_comment
+    <set >
+      <if test="topicId != null" >
+        topic_id = #{topicId,jdbcType=BIGINT},
+      </if>
+      <if test="topicType != null" >
+        topic_type = #{topicType,jdbcType=VARCHAR},
+      </if>
+      <if test="commentContent != null" >
+        comment_content = #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="fromUid != null" >
+        from_uid = #{fromUid,jdbcType=BIGINT},
+      </if>
+      <if test="toUid != null" >
+        to_uid = #{toUid,jdbcType=BIGINT},
+      </if>
+      <if test="commentLikes != null" >
+        comment_likes = #{commentLikes,jdbcType=INTEGER},
+      </if>
+      <if test="commentTime != null" >
+        comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xienan.model.Voidoreview_comment" >
+    update bj_voidoreview_comment
+    set topic_id = #{topicId,jdbcType=BIGINT},
+      topic_type = #{topicType,jdbcType=VARCHAR},
+      comment_content = #{commentContent,jdbcType=VARCHAR},
+      from_uid = #{fromUid,jdbcType=BIGINT},
+      to_uid = #{toUid,jdbcType=BIGINT},
+      comment_likes = #{commentLikes,jdbcType=INTEGER},
+      comment_time = #{commentTime,jdbcType=TIMESTAMP}
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </update>
+</mapper>

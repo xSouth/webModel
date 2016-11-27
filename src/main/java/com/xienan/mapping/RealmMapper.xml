@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xienan.dao.RealmMapper" >
+  <resultMap id="BaseResultMap" type="com.xienan.model.Realm" >
+    <id column="realm_id" property="realmId" jdbcType="INTEGER" />
+    <result column="realm_content" property="realmContent" jdbcType="VARCHAR" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    realm_id, realm_content, insert_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bj_realm
+    where realm_id = #{realmId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bj_realm
+    where realm_id = #{realmId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xienan.model.Realm" >
+    insert into bj_realm (realm_id, realm_content, insert_time
+      )
+    values (#{realmId,jdbcType=INTEGER}, #{realmContent,jdbcType=VARCHAR}, #{insertTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xienan.model.Realm" >
+    insert into bj_realm
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="realmId != null" >
+        realm_id,
+      </if>
+      <if test="realmContent != null" >
+        realm_content,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="realmId != null" >
+        #{realmId,jdbcType=INTEGER},
+      </if>
+      <if test="realmContent != null" >
+        #{realmContent,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xienan.model.Realm" >
+    update bj_realm
+    <set >
+      <if test="realmContent != null" >
+        realm_content = #{realmContent,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where realm_id = #{realmId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xienan.model.Realm" >
+    update bj_realm
+    set realm_content = #{realmContent,jdbcType=VARCHAR},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP}
+    where realm_id = #{realmId,jdbcType=INTEGER}
+  </update>
+</mapper>

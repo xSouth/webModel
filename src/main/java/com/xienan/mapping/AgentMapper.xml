@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xienan.dao.AgentMapper" >
+  <resultMap id="BaseResultMap" type="com.xienan.model.Agent" >
+    <id column="agent_id" property="agentId" jdbcType="BIGINT" />
+    <result column="agent_name" property="agentName" jdbcType="VARCHAR" />
+    <result column="agent_sex" property="agentSex" jdbcType="TINYINT" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="company_address" property="companyAddress" jdbcType="VARCHAR" />
+    <result column="agent_age" property="agentAge" jdbcType="INTEGER" />
+    <result column="agent_postcode" property="agentPostcode" jdbcType="VARCHAR" />
+    <result column="agent_phone" property="agentPhone" jdbcType="VARCHAR" />
+    <result column="agent_mailbox" property="agentMailbox" jdbcType="VARCHAR" />
+    <result column="sign_time_from" property="signTimeFrom" jdbcType="DATE" />
+    <result column="sign_time_end" property="signTimeEnd" jdbcType="DATE" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    agent_id, agent_name, agent_sex, company_name, company_address, agent_age, agent_postcode, 
+    agent_phone, agent_mailbox, sign_time_from, sign_time_end, insert_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bj_agent
+    where agent_id = #{agentId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bj_agent
+    where agent_id = #{agentId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xienan.model.Agent" >
+    insert into bj_agent (agent_id, agent_name, agent_sex, 
+      company_name, company_address, agent_age, 
+      agent_postcode, agent_phone, agent_mailbox, 
+      sign_time_from, sign_time_end, insert_time
+      )
+    values (#{agentId,jdbcType=BIGINT}, #{agentName,jdbcType=VARCHAR}, #{agentSex,jdbcType=TINYINT}, 
+      #{companyName,jdbcType=VARCHAR}, #{companyAddress,jdbcType=VARCHAR}, #{agentAge,jdbcType=INTEGER}, 
+      #{agentPostcode,jdbcType=VARCHAR}, #{agentPhone,jdbcType=VARCHAR}, #{agentMailbox,jdbcType=VARCHAR}, 
+      #{signTimeFrom,jdbcType=DATE}, #{signTimeEnd,jdbcType=DATE}, #{insertTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xienan.model.Agent" >
+    insert into bj_agent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="agentName != null" >
+        agent_name,
+      </if>
+      <if test="agentSex != null" >
+        agent_sex,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="companyAddress != null" >
+        company_address,
+      </if>
+      <if test="agentAge != null" >
+        agent_age,
+      </if>
+      <if test="agentPostcode != null" >
+        agent_postcode,
+      </if>
+      <if test="agentPhone != null" >
+        agent_phone,
+      </if>
+      <if test="agentMailbox != null" >
+        agent_mailbox,
+      </if>
+      <if test="signTimeFrom != null" >
+        sign_time_from,
+      </if>
+      <if test="signTimeEnd != null" >
+        sign_time_end,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="agentId != null" >
+        #{agentId,jdbcType=BIGINT},
+      </if>
+      <if test="agentName != null" >
+        #{agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentSex != null" >
+        #{agentSex,jdbcType=TINYINT},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null" >
+        #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="agentAge != null" >
+        #{agentAge,jdbcType=INTEGER},
+      </if>
+      <if test="agentPostcode != null" >
+        #{agentPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="agentPhone != null" >
+        #{agentPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="agentMailbox != null" >
+        #{agentMailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="signTimeFrom != null" >
+        #{signTimeFrom,jdbcType=DATE},
+      </if>
+      <if test="signTimeEnd != null" >
+        #{signTimeEnd,jdbcType=DATE},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xienan.model.Agent" >
+    update bj_agent
+    <set >
+      <if test="agentName != null" >
+        agent_name = #{agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentSex != null" >
+        agent_sex = #{agentSex,jdbcType=TINYINT},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null" >
+        company_address = #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="agentAge != null" >
+        agent_age = #{agentAge,jdbcType=INTEGER},
+      </if>
+      <if test="agentPostcode != null" >
+        agent_postcode = #{agentPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="agentPhone != null" >
+        agent_phone = #{agentPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="agentMailbox != null" >
+        agent_mailbox = #{agentMailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="signTimeFrom != null" >
+        sign_time_from = #{signTimeFrom,jdbcType=DATE},
+      </if>
+      <if test="signTimeEnd != null" >
+        sign_time_end = #{signTimeEnd,jdbcType=DATE},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where agent_id = #{agentId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xienan.model.Agent" >
+    update bj_agent
+    set agent_name = #{agentName,jdbcType=VARCHAR},
+      agent_sex = #{agentSex,jdbcType=TINYINT},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      company_address = #{companyAddress,jdbcType=VARCHAR},
+      agent_age = #{agentAge,jdbcType=INTEGER},
+      agent_postcode = #{agentPostcode,jdbcType=VARCHAR},
+      agent_phone = #{agentPhone,jdbcType=VARCHAR},
+      agent_mailbox = #{agentMailbox,jdbcType=VARCHAR},
+      sign_time_from = #{signTimeFrom,jdbcType=DATE},
+      sign_time_end = #{signTimeEnd,jdbcType=DATE},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP}
+    where agent_id = #{agentId,jdbcType=BIGINT}
+  </update>
+</mapper>

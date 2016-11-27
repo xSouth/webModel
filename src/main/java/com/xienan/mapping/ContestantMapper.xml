@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xienan.dao.ContestantMapper" >
+  <resultMap id="BaseResultMap" type="com.xienan.model.Contestant" >
+    <id column="contestant_id" property="contestantId" jdbcType="BIGINT" />
+    <result column="contestant_name" property="contestantName" jdbcType="VARCHAR" />
+    <result column="contestant_sex" property="contestantSex" jdbcType="TINYINT" />
+    <result column="contestant_birthday" property="contestantBirthday" jdbcType="DATE" />
+    <result column="contestant_birthfrom" property="contestantBirthfrom" jdbcType="VARCHAR" />
+    <result column="contestant_country" property="contestantCountry" jdbcType="VARCHAR" />
+    <result column="contestant_nationality" property="contestantNationality" jdbcType="VARCHAR" />
+    <result column="contestant_weight" property="contestantWeight" jdbcType="INTEGER" />
+    <result column="contestant_height" property="contestantHeight" jdbcType="INTEGER" />
+    <result column="contestant_passport_name" property="contestantPassportName" jdbcType="VARCHAR" />
+    <result column="contestant_passport_number" property="contestantPassportNumber" jdbcType="VARCHAR" />
+    <result column="contestant_pb_since" property="contestantPbSince" jdbcType="DATE" />
+    <result column="contestant_pb_end" property="contestantPbEnd" jdbcType="DATE" />
+    <result column="contestant_passport_address" property="contestantPassportAddress" jdbcType="VARCHAR" />
+    <result column="contestant_phone" property="contestantPhone" jdbcType="VARCHAR" />
+    <result column="contestant_address" property="contestantAddress" jdbcType="VARCHAR" />
+    <result column="contestant_mailbox" property="contestantMailbox" jdbcType="VARCHAR" />
+    <result column="contestant_postcode" property="contestantPostcode" jdbcType="VARCHAR" />
+    <result column="contestant_papers_photo" property="contestantPapersPhoto" jdbcType="VARCHAR" />
+    <result column="contestant_bodice_photo" property="contestantBodicePhoto" jdbcType="VARCHAR" />
+    <result column="contestant_body_photo" property="contestantBodyPhoto" jdbcType="VARCHAR" />
+    <result column="agent_id" property="agentId" jdbcType="BIGINT" />
+    <result column="selfassessment" property="selfassessment" jdbcType="VARCHAR" />
+    <result column="training_screen" property="trainingScreen" jdbcType="VARCHAR" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    contestant_id, contestant_name, contestant_sex, contestant_birthday, contestant_birthfrom, 
+    contestant_country, contestant_nationality, contestant_weight, contestant_height, 
+    contestant_passport_name, contestant_passport_number, contestant_pb_since, contestant_pb_end, 
+    contestant_passport_address, contestant_phone, contestant_address, contestant_mailbox, 
+    contestant_postcode, contestant_papers_photo, contestant_bodice_photo, contestant_body_photo, 
+    agent_id, selfassessment, training_screen, insert_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bj_contestant
+    where contestant_id = #{contestantId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bj_contestant
+    where contestant_id = #{contestantId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xienan.model.Contestant" >
+    insert into bj_contestant (contestant_id, contestant_name, contestant_sex, 
+      contestant_birthday, contestant_birthfrom, contestant_country, 
+      contestant_nationality, contestant_weight, 
+      contestant_height, contestant_passport_name, 
+      contestant_passport_number, contestant_pb_since, 
+      contestant_pb_end, contestant_passport_address, 
+      contestant_phone, contestant_address, contestant_mailbox, 
+      contestant_postcode, contestant_papers_photo, 
+      contestant_bodice_photo, contestant_body_photo, 
+      agent_id, selfassessment, training_screen, 
+      insert_time)
+    values (#{contestantId,jdbcType=BIGINT}, #{contestantName,jdbcType=VARCHAR}, #{contestantSex,jdbcType=TINYINT}, 
+      #{contestantBirthday,jdbcType=DATE}, #{contestantBirthfrom,jdbcType=VARCHAR}, #{contestantCountry,jdbcType=VARCHAR}, 
+      #{contestantNationality,jdbcType=VARCHAR}, #{contestantWeight,jdbcType=INTEGER}, 
+      #{contestantHeight,jdbcType=INTEGER}, #{contestantPassportName,jdbcType=VARCHAR}, 
+      #{contestantPassportNumber,jdbcType=VARCHAR}, #{contestantPbSince,jdbcType=DATE}, 
+      #{contestantPbEnd,jdbcType=DATE}, #{contestantPassportAddress,jdbcType=VARCHAR}, 
+      #{contestantPhone,jdbcType=VARCHAR}, #{contestantAddress,jdbcType=VARCHAR}, #{contestantMailbox,jdbcType=VARCHAR}, 
+      #{contestantPostcode,jdbcType=VARCHAR}, #{contestantPapersPhoto,jdbcType=VARCHAR}, 
+      #{contestantBodicePhoto,jdbcType=VARCHAR}, #{contestantBodyPhoto,jdbcType=VARCHAR}, 
+      #{agentId,jdbcType=BIGINT}, #{selfassessment,jdbcType=VARCHAR}, #{trainingScreen,jdbcType=VARCHAR}, 
+      #{insertTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xienan.model.Contestant" >
+    insert into bj_contestant
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contestantId != null" >
+        contestant_id,
+      </if>
+      <if test="contestantName != null" >
+        contestant_name,
+      </if>
+      <if test="contestantSex != null" >
+        contestant_sex,
+      </if>
+      <if test="contestantBirthday != null" >
+        contestant_birthday,
+      </if>
+      <if test="contestantBirthfrom != null" >
+        contestant_birthfrom,
+      </if>
+      <if test="contestantCountry != null" >
+        contestant_country,
+      </if>
+      <if test="contestantNationality != null" >
+        contestant_nationality,
+      </if>
+      <if test="contestantWeight != null" >
+        contestant_weight,
+      </if>
+      <if test="contestantHeight != null" >
+        contestant_height,
+      </if>
+      <if test="contestantPassportName != null" >
+        contestant_passport_name,
+      </if>
+      <if test="contestantPassportNumber != null" >
+        contestant_passport_number,
+      </if>
+      <if test="contestantPbSince != null" >
+        contestant_pb_since,
+      </if>
+      <if test="contestantPbEnd != null" >
+        contestant_pb_end,
+      </if>
+      <if test="contestantPassportAddress != null" >
+        contestant_passport_address,
+      </if>
+      <if test="contestantPhone != null" >
+        contestant_phone,
+      </if>
+      <if test="contestantAddress != null" >
+        contestant_address,
+      </if>
+      <if test="contestantMailbox != null" >
+        contestant_mailbox,
+      </if>
+      <if test="contestantPostcode != null" >
+        contestant_postcode,
+      </if>
+      <if test="contestantPapersPhoto != null" >
+        contestant_papers_photo,
+      </if>
+      <if test="contestantBodicePhoto != null" >
+        contestant_bodice_photo,
+      </if>
+      <if test="contestantBodyPhoto != null" >
+        contestant_body_photo,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="selfassessment != null" >
+        selfassessment,
+      </if>
+      <if test="trainingScreen != null" >
+        training_screen,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contestantId != null" >
+        #{contestantId,jdbcType=BIGINT},
+      </if>
+      <if test="contestantName != null" >
+        #{contestantName,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantSex != null" >
+        #{contestantSex,jdbcType=TINYINT},
+      </if>
+      <if test="contestantBirthday != null" >
+        #{contestantBirthday,jdbcType=DATE},
+      </if>
+      <if test="contestantBirthfrom != null" >
+        #{contestantBirthfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantCountry != null" >
+        #{contestantCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantNationality != null" >
+        #{contestantNationality,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantWeight != null" >
+        #{contestantWeight,jdbcType=INTEGER},
+      </if>
+      <if test="contestantHeight != null" >
+        #{contestantHeight,jdbcType=INTEGER},
+      </if>
+      <if test="contestantPassportName != null" >
+        #{contestantPassportName,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantPassportNumber != null" >
+        #{contestantPassportNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantPbSince != null" >
+        #{contestantPbSince,jdbcType=DATE},
+      </if>
+      <if test="contestantPbEnd != null" >
+        #{contestantPbEnd,jdbcType=DATE},
+      </if>
+      <if test="contestantPassportAddress != null" >
+        #{contestantPassportAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantPhone != null" >
+        #{contestantPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantAddress != null" >
+        #{contestantAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantMailbox != null" >
+        #{contestantMailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantPostcode != null" >
+        #{contestantPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantPapersPhoto != null" >
+        #{contestantPapersPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantBodicePhoto != null" >
+        #{contestantBodicePhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantBodyPhoto != null" >
+        #{contestantBodyPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=BIGINT},
+      </if>
+      <if test="selfassessment != null" >
+        #{selfassessment,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingScreen != null" >
+        #{trainingScreen,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xienan.model.Contestant" >
+    update bj_contestant
+    <set >
+      <if test="contestantName != null" >
+        contestant_name = #{contestantName,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantSex != null" >
+        contestant_sex = #{contestantSex,jdbcType=TINYINT},
+      </if>
+      <if test="contestantBirthday != null" >
+        contestant_birthday = #{contestantBirthday,jdbcType=DATE},
+      </if>
+      <if test="contestantBirthfrom != null" >
+        contestant_birthfrom = #{contestantBirthfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantCountry != null" >
+        contestant_country = #{contestantCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantNationality != null" >
+        contestant_nationality = #{contestantNationality,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantWeight != null" >
+        contestant_weight = #{contestantWeight,jdbcType=INTEGER},
+      </if>
+      <if test="contestantHeight != null" >
+        contestant_height = #{contestantHeight,jdbcType=INTEGER},
+      </if>
+      <if test="contestantPassportName != null" >
+        contestant_passport_name = #{contestantPassportName,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantPassportNumber != null" >
+        contestant_passport_number = #{contestantPassportNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantPbSince != null" >
+        contestant_pb_since = #{contestantPbSince,jdbcType=DATE},
+      </if>
+      <if test="contestantPbEnd != null" >
+        contestant_pb_end = #{contestantPbEnd,jdbcType=DATE},
+      </if>
+      <if test="contestantPassportAddress != null" >
+        contestant_passport_address = #{contestantPassportAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantPhone != null" >
+        contestant_phone = #{contestantPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantAddress != null" >
+        contestant_address = #{contestantAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantMailbox != null" >
+        contestant_mailbox = #{contestantMailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantPostcode != null" >
+        contestant_postcode = #{contestantPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantPapersPhoto != null" >
+        contestant_papers_photo = #{contestantPapersPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantBodicePhoto != null" >
+        contestant_bodice_photo = #{contestantBodicePhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="contestantBodyPhoto != null" >
+        contestant_body_photo = #{contestantBodyPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=BIGINT},
+      </if>
+      <if test="selfassessment != null" >
+        selfassessment = #{selfassessment,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingScreen != null" >
+        training_screen = #{trainingScreen,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where contestant_id = #{contestantId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xienan.model.Contestant" >
+    update bj_contestant
+    set contestant_name = #{contestantName,jdbcType=VARCHAR},
+      contestant_sex = #{contestantSex,jdbcType=TINYINT},
+      contestant_birthday = #{contestantBirthday,jdbcType=DATE},
+      contestant_birthfrom = #{contestantBirthfrom,jdbcType=VARCHAR},
+      contestant_country = #{contestantCountry,jdbcType=VARCHAR},
+      contestant_nationality = #{contestantNationality,jdbcType=VARCHAR},
+      contestant_weight = #{contestantWeight,jdbcType=INTEGER},
+      contestant_height = #{contestantHeight,jdbcType=INTEGER},
+      contestant_passport_name = #{contestantPassportName,jdbcType=VARCHAR},
+      contestant_passport_number = #{contestantPassportNumber,jdbcType=VARCHAR},
+      contestant_pb_since = #{contestantPbSince,jdbcType=DATE},
+      contestant_pb_end = #{contestantPbEnd,jdbcType=DATE},
+      contestant_passport_address = #{contestantPassportAddress,jdbcType=VARCHAR},
+      contestant_phone = #{contestantPhone,jdbcType=VARCHAR},
+      contestant_address = #{contestantAddress,jdbcType=VARCHAR},
+      contestant_mailbox = #{contestantMailbox,jdbcType=VARCHAR},
+      contestant_postcode = #{contestantPostcode,jdbcType=VARCHAR},
+      contestant_papers_photo = #{contestantPapersPhoto,jdbcType=VARCHAR},
+      contestant_bodice_photo = #{contestantBodicePhoto,jdbcType=VARCHAR},
+      contestant_body_photo = #{contestantBodyPhoto,jdbcType=VARCHAR},
+      agent_id = #{agentId,jdbcType=BIGINT},
+      selfassessment = #{selfassessment,jdbcType=VARCHAR},
+      training_screen = #{trainingScreen,jdbcType=VARCHAR},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP}
+    where contestant_id = #{contestantId,jdbcType=BIGINT}
+  </update>
+</mapper>

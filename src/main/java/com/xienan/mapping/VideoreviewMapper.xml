@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xienan.dao.VideoreviewMapper" >
+  <resultMap id="BaseResultMap" type="com.xienan.model.Videoreview" >
+    <id column="video_id" property="videoId" jdbcType="BIGINT" />
+    <result column="video_url" property="videoUrl" jdbcType="VARCHAR" />
+    <result column="video_describe" property="videoDescribe" jdbcType="VARCHAR" />
+    <result column="video_comment" property="videoComment" jdbcType="INTEGER" />
+    <result column="video_uploadtime" property="videoUploadtime" jdbcType="DATE" />
+    <result column="video_uploader" property="videoUploader" jdbcType="VARCHAR" />
+    <result column="video_playtime" property="videoPlaytime" jdbcType="VARCHAR" />
+    <result column="video_inserttime" property="videoInserttime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    video_id, video_url, video_describe, video_comment, video_uploadtime, video_uploader, 
+    video_playtime, video_inserttime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bj_videoreview
+    where video_id = #{videoId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bj_videoreview
+    where video_id = #{videoId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xienan.model.Videoreview" >
+    insert into bj_videoreview (video_id, video_url, video_describe, 
+      video_comment, video_uploadtime, video_uploader, 
+      video_playtime, video_inserttime)
+    values (#{videoId,jdbcType=BIGINT}, #{videoUrl,jdbcType=VARCHAR}, #{videoDescribe,jdbcType=VARCHAR}, 
+      #{videoComment,jdbcType=INTEGER}, #{videoUploadtime,jdbcType=DATE}, #{videoUploader,jdbcType=VARCHAR}, 
+      #{videoPlaytime,jdbcType=VARCHAR}, #{videoInserttime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xienan.model.Videoreview" >
+    insert into bj_videoreview
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="videoId != null" >
+        video_id,
+      </if>
+      <if test="videoUrl != null" >
+        video_url,
+      </if>
+      <if test="videoDescribe != null" >
+        video_describe,
+      </if>
+      <if test="videoComment != null" >
+        video_comment,
+      </if>
+      <if test="videoUploadtime != null" >
+        video_uploadtime,
+      </if>
+      <if test="videoUploader != null" >
+        video_uploader,
+      </if>
+      <if test="videoPlaytime != null" >
+        video_playtime,
+      </if>
+      <if test="videoInserttime != null" >
+        video_inserttime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="videoId != null" >
+        #{videoId,jdbcType=BIGINT},
+      </if>
+      <if test="videoUrl != null" >
+        #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoDescribe != null" >
+        #{videoDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="videoComment != null" >
+        #{videoComment,jdbcType=INTEGER},
+      </if>
+      <if test="videoUploadtime != null" >
+        #{videoUploadtime,jdbcType=DATE},
+      </if>
+      <if test="videoUploader != null" >
+        #{videoUploader,jdbcType=VARCHAR},
+      </if>
+      <if test="videoPlaytime != null" >
+        #{videoPlaytime,jdbcType=VARCHAR},
+      </if>
+      <if test="videoInserttime != null" >
+        #{videoInserttime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xienan.model.Videoreview" >
+    update bj_videoreview
+    <set >
+      <if test="videoUrl != null" >
+        video_url = #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoDescribe != null" >
+        video_describe = #{videoDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="videoComment != null" >
+        video_comment = #{videoComment,jdbcType=INTEGER},
+      </if>
+      <if test="videoUploadtime != null" >
+        video_uploadtime = #{videoUploadtime,jdbcType=DATE},
+      </if>
+      <if test="videoUploader != null" >
+        video_uploader = #{videoUploader,jdbcType=VARCHAR},
+      </if>
+      <if test="videoPlaytime != null" >
+        video_playtime = #{videoPlaytime,jdbcType=VARCHAR},
+      </if>
+      <if test="videoInserttime != null" >
+        video_inserttime = #{videoInserttime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where video_id = #{videoId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xienan.model.Videoreview" >
+    update bj_videoreview
+    set video_url = #{videoUrl,jdbcType=VARCHAR},
+      video_describe = #{videoDescribe,jdbcType=VARCHAR},
+      video_comment = #{videoComment,jdbcType=INTEGER},
+      video_uploadtime = #{videoUploadtime,jdbcType=DATE},
+      video_uploader = #{videoUploader,jdbcType=VARCHAR},
+      video_playtime = #{videoPlaytime,jdbcType=VARCHAR},
+      video_inserttime = #{videoInserttime,jdbcType=TIMESTAMP}
+    where video_id = #{videoId,jdbcType=BIGINT}
+  </update>
+</mapper>
